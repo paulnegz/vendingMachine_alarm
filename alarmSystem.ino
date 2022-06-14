@@ -13,16 +13,14 @@ namespace sensor{
   uint16_t prev_tilt{};
   uint16_t tilt{}; 
   void printValues(uint16_t vibrationSensor, uint16_t prev_vibrationSensor, uint16_t tiltSensor);
-
 }
 
 void setup() {
-  Serial.begin(9600); //Open the serial to set the baud rate as 9600bps
+  Serial.begin(9600); 
   pinMode(2,OUTPUT);
   digitalWrite(2, HIGH);
   pinMode(3,OUTPUT);
   digitalWrite(3, LOW); 
-  // startPlayback(sound::alarm, sizeof(sound::alarm));
 }
 
 void loop() {
