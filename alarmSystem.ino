@@ -28,8 +28,7 @@ using namespace sensor;
 using namespace sound;
 using namespace machine;
 
-void setup() {
-  Serial.begin(115200); 
+void setup() { 
   sensor::powerOn();
 }
 void loop() {
@@ -55,9 +54,11 @@ void loop() {
 }
 
 void sensor::powerOn(){
+  Serial.begin(115200);
+
   pinMode(2,OUTPUT);
-  digitalWrite(2, HIGH);
   pinMode(3,OUTPUT);
+  digitalWrite(2, HIGH);
   digitalWrite(3, LOW); 
 };
 void sensor::printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor){
