@@ -27,7 +27,6 @@ namespace machine{
 }
 using namespace sensor;
 using namespace sound;
-using namespace alarm;
 using namespace machine;
 
 void setup() {
@@ -78,4 +77,3 @@ bool machine::isShaking(const uint16_t& tiltSensor, const uint16_t& vibrationSen
   }
   return false;
 }
-
