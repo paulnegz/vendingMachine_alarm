@@ -27,7 +27,7 @@ using namespace sound;
 using namespace machine;
 
 void setup() {
-  Serial.begin(9600); 
+  Serial.begin(115200); 
   initPinOut();
 }
 void loop() {
