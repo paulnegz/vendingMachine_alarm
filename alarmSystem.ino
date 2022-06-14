@@ -21,7 +21,7 @@ namespace sensor{
   uint16_t prev_tilt{};
   uint16_t tilt{};
   void printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor);
-  void powerOn();
+  void powerOnAll();
 }using namespace sensor;
 
 namespace sound{
@@ -36,7 +36,7 @@ namespace machine{
 } using namespace machine;
 
 void setup() { 
-  sensor::powerOn();
+  sensor::powerOnAll();
 }
 void loop() {
   sensor::vibration = analogRead(vibrationPin); 
@@ -60,7 +60,7 @@ void loop() {
   delay(2); 
 }
 
-void sensor::powerOn(){
+void sensor::powerOnAll(){
   Serial.begin(115200);
   pinMode(pin::high[0],OUTPUT);
   pinMode(pin::ground[0],OUTPUT);
