@@ -33,12 +33,12 @@ void loop() {
   playDone = millis() > startPlayBackTime+3000;  
   if(sound::playAlarm && playDone){
     stopPlayback();
-    sound::playAlarm = false;
+    playAlarm = false;
   }
   if(!sound::playAlarm && (tilt || vibration > prev_vibration)){
     startPlayback(sound::alarm, sizeof(alarm));
-    sound::playAlarm = true;
     startPlayBackTime = millis();
+    playAlarm = true;
   }
 
   prev_vibration = vibration;
