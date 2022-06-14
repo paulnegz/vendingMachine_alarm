@@ -13,10 +13,10 @@ namespace sensor{
   uint16_t vibration{}; 
   uint16_t prev_tilt{};
   uint16_t tilt{}; 
-  void printValues(const uint16_t& vibrationSensor, const uint16_t& tiltSensor);
+  void printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor);
 }
 namespace machine{
-  bool isMoving(const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor,const uint16_t& tiltSensor);
+  bool isMoving(const uint16_t& tiltSensor, const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor);
   bool moving{false};
 }
 using namespace sensor;
@@ -33,9 +33,9 @@ void setup() {
 void loop() {
   sensor::vibration = analogRead(0); 
   sensor::tilt = analogRead(1); 
-  sensor::printValues(vibration, tilt);
+  sensor::printValues(tilt, vibration);
 
-  machine::moving = isMoving(vibration, prev_vibration, tilt); 
+  machine::moving = isMoving(tilt, vibration, prev_vibration); 
   playDone = millis() > startPlayBackTime+3000;  
   if(sound::playAlarm && playDone){
     stopPlayback();
@@ -52,7 +52,7 @@ void loop() {
   delay(2); 
 }
 
-void sensor::printValues(const uint16_t& vibrationSensor, const uint16_t& tiltSensor){
+void sensor::printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor){
   if(tiltSensor){
     Serial.print("Tilt is ");
     Serial.println(tiltSensor);
@@ -63,7 +63,7 @@ void sensor::printValues(const uint16_t& vibrationSensor, const uint16_t& tiltSe
   }
 }
 
-bool machine::isMoving(const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor,const uint16_t& tiltSensor){
+bool machine::isMoving(const uint16_t& tiltSensor, const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor){
   if(vibration > prev_vibration || tilt){
     return true;
   }
