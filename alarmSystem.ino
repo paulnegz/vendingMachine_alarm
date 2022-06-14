@@ -15,6 +15,9 @@ namespace sensor{
   uint16_t tilt{}; 
   void printValues(const uint16_t& vibrationSensor, const uint16_t& tiltSensor);
 }
+namespace machine{
+  bool isMoving{false};
+}
 using namespace sensor;
 using namespace sound;
 
@@ -30,12 +33,13 @@ void loop() {
   sensor::tilt = analogRead(1); 
   sensor::printValues(vibration, tilt);
 
+  machine::isMoving = vibration > prev_vibration || tilt;
   playDone = millis() > startPlayBackTime+3000;  
   if(sound::playAlarm && playDone){
     stopPlayback();
     playAlarm = false;
   }
-  if(!sound::playAlarm && (tilt || vibration > prev_vibration)){
+  if(!sound::playAlarm && machine::isMoving){
     startPlayback(sound::alarm, sizeof(alarm));
     startPlayBackTime = millis();
     playAlarm = true;
