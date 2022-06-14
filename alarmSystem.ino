@@ -36,7 +36,7 @@ void loop() {
     sound::playBack = false;
   }
   if(!sound::playBack && (tilt || vibration > prev_vibration)){
-    startPlayback(sound::alarm, sizeof(sound::alarm));
+    startPlayback(sound::alarm, sizeof(alarm));
     sound::playBack = true;
     startPlayBackTime = millis();
   }
