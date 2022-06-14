@@ -29,6 +29,7 @@ void loop() {
   sensor::printValues(sensor::vibration, sensor::prev_vibration, sensor::tilt);
   
   if(sound::playBack && millis()>sound::startPlayBackTime+3000){
+    stopPlayback();
     sound::playBack = false;
   }
   if(!sound::playBack && (sensor::tilt || sensor::vibration>sensor::prev_vibration)){
