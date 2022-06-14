@@ -35,7 +35,7 @@ void loop() {
   sensor::printValues(tilt, vibration);
 
   machine::moving = isMoving(tilt, vibration, prev_vibration); 
-  if(!sound::playAlarm && machine::moving){
+  if(machine::moving && !sound::playAlarm){
     startPlayback(sound::alarm, sizeof(alarm));
     startPlayBackTime = millis();
     playAlarm = true;
