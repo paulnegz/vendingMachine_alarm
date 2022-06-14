@@ -28,17 +28,17 @@ void setup() {
 void loop() {
   sensor::vibration = analogRead(0); 
   sensor::tilt = analogRead(1); 
-  playDone = millis() > startPlayBackTime+3000;
   sensor::printValues(vibration, tilt);
-  
-  if(sound::playBack && sound::playDone){
+
+  playDone = millis() > startPlayBackTime+3000;  
+  if(sound::playBack && playDone){
     stopPlayback();
     sound::playBack = false;
   }
   if(!sound::playBack && (tilt || vibration > prev_vibration)){
     startPlayback(sound::alarm, sizeof(sound::alarm));
     sound::playBack = true;
-    sound::startPlayBackTime = millis();
+    startPlayBackTime = millis();
   }
 
   prev_vibration = vibration;
