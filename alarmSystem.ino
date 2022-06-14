@@ -13,9 +13,10 @@ namespace sensor{
   uint16_t vibration{}; 
   uint16_t prev_tilt{};
   uint16_t tilt{}; 
-  void printValues(const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor, const uint16_t& tiltSensor);
+  void printValues(const uint16_t& vibrationSensor, const uint16_t& tiltSensor);
 }
 using namespace sensor;
+using namespace sound;
 
 void setup() {
   Serial.begin(9600); 
@@ -27,8 +28,8 @@ void setup() {
 void loop() {
   sensor::vibration = analogRead(0); 
   sensor::tilt = analogRead(1); 
-  sound::playDone = millis() > sound::startPlayBackTime+3000;
-  printValues(sensor::vibration, sensor::prev_vibration, sensor::tilt);
+  playDone = millis() > sound::startPlayBackTime+3000;
+  sensor::printValues(vibration, tilt);
   
   if(sound::playBack && sound::playDone){
     stopPlayback();
@@ -45,12 +46,12 @@ void loop() {
   delay(2); 
 }
 
-void sensor::printValues(const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor, const uint16_t& tiltSensor){
+void sensor::printValues(const uint16_t& vibrationSensor, const uint16_t& tiltSensor){
   if(tiltSensor){
     Serial.print("Tilt is ");
     Serial.println(tiltSensor);
   }
-  if(vibrationSensor>prev_vibrationSensor){
+  if(vibrationSensor){
     Serial.print("Vibration is ");
     Serial.println(vibrationSensor);
   }
