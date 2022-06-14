@@ -25,13 +25,13 @@ namespace sensor{
 } using namespace sensor;
 
 namespace sound{
-  bool playAlarm{false};
-  bool timerUp{true};
-  double startTime{0};
+  bool playAlarm{};
+  bool timerUp{};
+  double startTime{};
 } using namespace sound;
 
 namespace machine{
-  bool shaking{false};
+  bool shaking{};
   bool isShaking(const uint16_t& tiltSensor, const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor);
 } using namespace machine;
 
