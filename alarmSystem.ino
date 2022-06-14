@@ -37,8 +37,8 @@ void loop() {
 
   machine::shaking = isShaking(tilt, vibration, prev_vibration); 
   if(machine::shaking && !sound::playAlarm){
-    startPlayback(sound::alarm, sizeof(alarm));
     startTime = millis();
+    startPlayback(sound::alarm, sizeof(alarm));
     playAlarm = true;
   }
   timerUp = millis() > startTime+sound::duration;
