@@ -7,15 +7,16 @@ namespace alarm{
   constexpr size_t size{sizeof(recording)};
   constexpr uint16_t duration{3000};
 }
-namespace pin{
+namespace pinOut{
   constexpr uint8_t speaker{11};
-  constexpr uint8_t vibrationPin{A0};
-  constexpr uint8_t tiltPin{A1};
   constexpr uint8_t high[] = {2};
   constexpr uint8_t ground[] = {3};
-} using namespace pin;
-
+}
 namespace sensor{
+  namespace pin{
+    constexpr uint8_t vibration{A0};
+    constexpr uint8_t tilt{A1};
+  }
   uint16_t prev_vibration{};
   uint16_t vibration{}; 
   uint16_t prev_tilt{};
@@ -39,8 +40,8 @@ void setup() {
   sensor::powerOnAll();
 }
 void loop() {
-  sensor::vibration = analogRead(vibrationPin); 
-  sensor::tilt = analogRead(tiltPin); 
+  sensor::vibration = analogRead(pin::vibration); 
+  sensor::tilt = analogRead(pin::tilt); 
   sensor::printValues(tilt, vibration);
 
   machine::shaking = isShaking(tilt, vibration, prev_vibration); 
@@ -62,10 +63,10 @@ void loop() {
 
 void sensor::powerOnAll(){
   Serial.begin(115200);
-  pinMode(pin::high[0],OUTPUT);
-  pinMode(pin::ground[0],OUTPUT);
-  digitalWrite(pin::high[0], HIGH);
-  digitalWrite(pin::ground[0], LOW); 
+  pinMode(pinOut::high[0],OUTPUT);
+  pinMode(pinOut::ground[0],OUTPUT);
+  digitalWrite(pinOut::high[0], HIGH);
+  digitalWrite(pinOut::ground[0], LOW); 
 };
 void sensor::printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor){
   if(tiltSensor){
