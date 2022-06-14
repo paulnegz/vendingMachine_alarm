@@ -19,16 +19,14 @@ namespace machine{
   bool isMoving(const uint16_t& tiltSensor, const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor);
   bool moving{false};
 }
+void initPinOut();
 using namespace sensor;
 using namespace sound;
 using namespace machine;
 
 void setup() {
   Serial.begin(9600); 
-  pinMode(2,OUTPUT);
-  digitalWrite(2, HIGH);
-  pinMode(3,OUTPUT);
-  digitalWrite(3, LOW); 
+  initPinOut();
 }
 void loop() {
   sensor::vibration = analogRead(0); 
@@ -52,6 +50,12 @@ void loop() {
   delay(2); 
 }
 
+void initPinOut(){
+  pinMode(2,OUTPUT);
+  digitalWrite(2, HIGH);
+  pinMode(3,OUTPUT);
+  digitalWrite(3, LOW); 
+};
 void sensor::printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor){
   if(tiltSensor){
     Serial.print("Tilt is ");
@@ -62,10 +66,10 @@ void sensor::printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSe
     Serial.println(vibrationSensor);
   }
 }
-
 bool machine::isMoving(const uint16_t& tiltSensor, const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor){
   if(vibration > prev_vibration || tilt){
     return true;
   }
   return false;
 }
+
