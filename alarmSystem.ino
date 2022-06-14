@@ -22,12 +22,12 @@ namespace sensor{
   uint16_t tilt{};
   void printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor);
   void powerOnAll();
-}using namespace sensor;
+} using namespace sensor;
 
 namespace sound{
   bool playAlarm{false};
+  bool timerUp{true};
   double startTime{0};
-  double timerUp{true};
 } using namespace sound;
 
 namespace machine{
