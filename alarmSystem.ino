@@ -12,10 +12,9 @@ namespace sensor{
   uint16_t vibration{}; 
   uint16_t prev_tilt{};
   uint16_t tilt{}; 
+  void printValues(uint16_t vibrationSensor, uint16_t prev_vibrationSensor, uint16_t tiltSensor);
+
 }
-
-
-void printSensorValues(uint16_t vibrationSensor, uint16_t prev_vibrationSensor, uint16_t tiltSensor);
 
 void setup() {
   Serial.begin(9600); //Open the serial to set the baud rate as 9600bps
@@ -29,7 +28,7 @@ void setup() {
 void loop() {
   sensor::vibration = analogRead(0); 
   sensor::tilt = analogRead(1); 
-  printSensorValues(sensor::vibration, sensor::prev_vibration, sensor::tilt);
+  sensor::printValues(sensor::vibration, sensor::prev_vibration, sensor::tilt);
   
   if(sound::playBack && millis()>sound::startPlayBackTime+3000){
     sound::playBack = false;
@@ -46,7 +45,7 @@ void loop() {
 }
 
 
-void printSensorValues(uint16_t vibrationSensor, uint16_t prev_vibrationSensor, uint16_t tiltSensor){
+void sensor::printValues(uint16_t vibrationSensor, uint16_t prev_vibrationSensor, uint16_t tiltSensor){
   if(tiltSensor){
     Serial.print("Tilt is ");
     Serial.println(tiltSensor);
