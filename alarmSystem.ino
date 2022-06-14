@@ -1,6 +1,5 @@
 #include <PCM.h>
 #include <Arduino.h>
-
 void initPinOut();
 
 namespace sound{
@@ -16,7 +15,7 @@ namespace sensor{
   uint16_t prev_vibration{};
   uint16_t vibration{}; 
   uint16_t prev_tilt{};
-  uint16_t tilt{}; 
+  uint16_t tilt{};
   void printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor);
 }
 namespace machine{
