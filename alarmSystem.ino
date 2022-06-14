@@ -20,6 +20,7 @@ namespace machine{
   bool moving{false};
 }
 void initPinOut();
+
 using namespace sensor;
 using namespace sound;
 using namespace machine;
@@ -34,15 +35,15 @@ void loop() {
   sensor::printValues(tilt, vibration);
 
   machine::moving = isMoving(tilt, vibration, prev_vibration); 
-  playDone = millis() > startPlayBackTime+3000;  
-  if(sound::playAlarm && playDone){
-    stopPlayback();
-    playAlarm = false;
-  }
   if(!sound::playAlarm && machine::moving){
     startPlayback(sound::alarm, sizeof(alarm));
     startPlayBackTime = millis();
     playAlarm = true;
+  }
+  playDone = millis() > startPlayBackTime+3000;
+  if(sound::playAlarm && playDone){
+    stopPlayback();
+    playAlarm = false;
   }
 
   prev_vibration = vibration;
