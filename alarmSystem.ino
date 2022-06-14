@@ -28,7 +28,7 @@ void setup() {
 void loop() {
   sensor::vibration = analogRead(0); 
   sensor::tilt = analogRead(1); 
-  playDone = millis() > sound::startPlayBackTime+3000;
+  playDone = millis() > startPlayBackTime+3000;
   sensor::printValues(vibration, tilt);
   
   if(sound::playBack && sound::playDone){
