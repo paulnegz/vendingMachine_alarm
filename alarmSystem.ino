@@ -9,7 +9,7 @@ namespace sound{
 };
   bool playAlarm{false};
   double startTime{0};
-  double timer{true};
+  double timerUp{true};
   constexpr uint16_t duration{3000};
 }
 namespace sensor{
@@ -42,8 +42,8 @@ void loop() {
     startTime = millis();
     playAlarm = true;
   }
-  timer = millis() > startTime+sound::duration;
-  if(sound::playAlarm && timer){
+  timerUp = millis() > startTime+sound::duration;
+  if(sound::playAlarm && timerUp){
     stopPlayback();
     playAlarm = false;
   }
