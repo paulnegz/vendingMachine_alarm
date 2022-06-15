@@ -17,10 +17,10 @@ void powerOn(){
     digitalWrite(pin, LOW);
   }
 };
-
 void setup() { 
   powerOn();
 }
+
 void loop() {
   tilt = analogRead(sensor::pin::tilt); 
   vibration = analogRead(sensor::pin::vibration); 
