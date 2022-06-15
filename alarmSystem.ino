@@ -5,7 +5,6 @@ using namespace sensor;
 using namespace sound;
 using machine::isShaking;
 namespace powerPin{
-  constexpr uint8_t speaker{11};
   constexpr uint8_t high[] = {2,4};
   constexpr uint8_t ground[] = {3,5};
 }

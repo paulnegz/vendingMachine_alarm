@@ -9,6 +9,7 @@ namespace alarm{
 }
 namespace sensor{
   namespace pin{
+    constexpr uint8_t speaker{11};
     constexpr uint8_t vibration{A0};
     constexpr uint8_t tilt{A1};
   }
