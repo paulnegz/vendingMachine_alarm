@@ -11,11 +11,11 @@ namespace sensor::powerPin{
 
 void powerOn(){
   Serial.begin(115200);
-  for(const auto& pin:  high){
+  for(const auto& pin: high){
     pinMode(pin,OUTPUT);
     digitalWrite(pin, HIGH);
   }
-  for(const auto& pin:  sensor::powerPin::low){
+  for(const auto& pin: sensor::powerPin::low){
     pinMode(pin,OUTPUT);
     digitalWrite(pin, LOW);
   }
