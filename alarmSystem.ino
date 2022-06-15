@@ -2,20 +2,21 @@
 #include <PCM.h>
 #include "namespaces.h"
 using machine::isShaking;
-using namespace sensor;
 using namespace sound;
+using namespace sensor;
+
 
 namespace sensor::powerPin{
   constexpr uint8_t high[] {2,4};
-  constexpr uint8_t ground[] {3,5};
+  constexpr uint8_t low[] {3,5};
 }
 void powerOn(){
   Serial.begin(115200);
-  for(const auto& pin:  powerPin::high){
+  for(const auto& pin:  sensor::powerPin::high){
     pinMode(pin,OUTPUT);
     digitalWrite(pin, HIGH);
   }
-  for(const auto& pin:  powerPin::ground){
+  for(const auto& pin:  sensor::powerPin::low){
     pinMode(pin,OUTPUT);
     digitalWrite(pin, LOW);
   }
