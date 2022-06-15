@@ -9,8 +9,8 @@ namespace alarm{
 }
 namespace pinOut{
   constexpr uint8_t speaker{11};
-  constexpr uint8_t high[] = {2};
-  constexpr uint8_t ground[] = {3};
+  constexpr uint8_t high[] = {2,4};
+  constexpr uint8_t ground[] = {3,5};
 }
 namespace sensor{
   namespace pin{
