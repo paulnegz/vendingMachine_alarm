@@ -4,18 +4,18 @@
 using namespace sensor;
 using namespace sound;
 using machine::isShaking;
-namespace pinOut{
+namespace powerPin{
   constexpr uint8_t speaker{11};
   constexpr uint8_t high[] = {2,4};
   constexpr uint8_t ground[] = {3,5};
 }
 void sensor::powerOnAll(){
   Serial.begin(115200);
-  for(const auto& pin:  pinOut::high){
+  for(const auto& pin:  powerPin::high){
     pinMode(pin,OUTPUT);
     digitalWrite(pin, HIGH);
   }
-  for(const auto& pin:  pinOut::ground){
+  for(const auto& pin:  powerPin::ground){
     pinMode(pin,OUTPUT);
     digitalWrite(pin, LOW);
   }
