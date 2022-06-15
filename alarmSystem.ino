@@ -9,8 +9,8 @@ void setup() {
   sensor::powerOnAll();
 }
 void loop() {
-  vibration = analogRead(sensor::pin::vibration); 
   tilt = analogRead(sensor::pin::tilt); 
+  vibration = analogRead(sensor::pin::vibration); 
   sensor::printValues(tilt, vibration);
 
   machine::shaking = isShaking(tilt, vibration, prev_vibration); 
