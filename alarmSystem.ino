@@ -21,7 +21,7 @@ namespace sensor{
   uint16_t vibration{}; 
   uint16_t prev_tilt{};
   uint16_t tilt{};
-  void printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor);
+  void printValues(const uint16_t& , const uint16_t& );
   void powerOnAll();
 } using namespace sensor;
 
@@ -34,7 +34,7 @@ namespace sound{
 namespace machine{
   bool shaking{};
   bool isShaking(const uint16_t& tiltSensor, const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor);
-} using namespace machine;
+} using machine::isShaking;
 
 void setup() { 
   sensor::powerOnAll();
