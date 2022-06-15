@@ -1,6 +1,11 @@
 #include <Arduino.h>
 #include <PCM.h>
 #include "namespaces.h"
+namespace pinOut{
+  constexpr uint8_t speaker{11};
+  constexpr uint8_t high[] = {2,4};
+  constexpr uint8_t ground[] = {3,5};
+}
 using namespace sensor;
 using namespace sound;
 using machine::isShaking;
@@ -41,19 +46,3 @@ void sensor::powerOnAll(){
     digitalWrite(pin, LOW);
   }
 };
-void sensor::printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor){
-  if(tiltSensor){
-    Serial.print("Tilt is ");
-    Serial.println(tiltSensor);
-  }
-  if(vibrationSensor){
-    Serial.print("Vibration is ");
-    Serial.println(vibrationSensor);
-  }
-}
-bool machine::isShaking(const uint16_t& tiltSensor, const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor){
-  if(vibration > prev_vibration || tilt){
-    return true;
-  }
-  return false;
-}

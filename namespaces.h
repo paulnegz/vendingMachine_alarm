@@ -7,11 +7,6 @@ namespace alarm{
   constexpr size_t size{sizeof(recording)};
   constexpr uint16_t duration{3000};
 }
-namespace pinOut{
-  constexpr uint8_t speaker{11};
-  constexpr uint8_t high[] = {2,4};
-  constexpr uint8_t ground[] = {3,5};
-}
 namespace sensor{
   namespace pin{
     constexpr uint8_t vibration{A0};
@@ -31,6 +26,22 @@ namespace sound{
 } 
 namespace machine{
   bool shaking{};
-  bool isShaking(const uint16_t& tiltSensor, const uint16_t& vibrationSensor, const uint16_t& prev_vibrationSensor);
+  bool isShaking(const uint16_t& tilt, const uint16_t& vibration, const uint16_t& prev_vibration);
 } 
+bool machine::isShaking(const uint16_t& tilt, const uint16_t& vibration, const uint16_t& prev_vibration){
+  if(vibration > prev_vibration || tilt){
+    return true;
+  }
+  return false;
+}
+void sensor::printValues(const uint16_t& tilt, const uint16_t& vibration){
+  if(tilt){
+    Serial.print("Tilt is ");
+    Serial.println(tilt);
+  }
+  if(vibration){
+    Serial.print("Vibration is ");
+    Serial.println(vibration);
+  }
+}
 #endif
