@@ -2,7 +2,6 @@
 using machine::isShaking;
 using namespace sound;
 using namespace sensor;
-
 namespace powerPin{
   constexpr uint8_t high[] {2,4};
   constexpr uint8_t low[] {3,5};
@@ -35,6 +34,5 @@ void loop() {
   timerUp = millis() > startTime+alarm::duration;
   if(sound::playAlarm && timerUp)
     alarm::stop();
-
   sensor::update();
 }
