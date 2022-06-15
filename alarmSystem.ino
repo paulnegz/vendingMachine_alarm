@@ -4,15 +4,14 @@
 using machine::isShaking;
 using namespace sound;
 using namespace sensor;
-
-
 namespace sensor::powerPin{
   constexpr uint8_t high[] {2,4};
   constexpr uint8_t low[] {3,5};
-}
+} using sensor::powerPin::high;
+
 void powerOn(){
   Serial.begin(115200);
-  for(const auto& pin:  sensor::powerPin::high){
+  for(const auto& pin:  high){
     pinMode(pin,OUTPUT);
     digitalWrite(pin, HIGH);
   }
