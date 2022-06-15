@@ -11,7 +11,7 @@ void setup() {
 void loop() {
   sensor::vibration = analogRead(pin::vibration); 
   sensor::tilt = analogRead(pin::tilt); 
-  sensor::printValues(tilt, vibration);
+  printValues(sensor::tilt, sensor::vibration);
 
   machine::shaking = isShaking(tilt, vibration, prev_vibration); 
   if(machine::shaking && !sound::playAlarm){
