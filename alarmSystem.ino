@@ -61,11 +61,6 @@ void loop() {
   delay(2); 
 }
 
-namespace pinOut{
-  constexpr uint8_t speaker{11};
-  constexpr uint8_t high[] = {2,4};
-  constexpr uint8_t ground[] = {3,5};
-}
 void sensor::powerOnAll(){
   Serial.begin(115200);
   for(const auto& pin:  pinOut::high){
