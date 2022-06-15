@@ -63,10 +63,14 @@ void loop() {
 
 void sensor::powerOnAll(){
   Serial.begin(115200);
-  pinMode(pinOut::high[0],OUTPUT);
-  pinMode(pinOut::ground[0],OUTPUT);
-  digitalWrite(pinOut::high[0], HIGH);
-  digitalWrite(pinOut::ground[0], LOW); 
+  for(const auto& pin:  pinOut::high){
+    pinMode(pin,OUTPUT);
+    digitalWrite(pin, HIGH);
+  }
+  for(const auto& pin:  pinOut::ground){
+    pinMode(pin,OUTPUT);
+    digitalWrite(pin, LOW);
+  }
 };
 void sensor::printValues(const uint16_t& tiltSensor, const uint16_t& vibrationSensor){
   if(tiltSensor){
