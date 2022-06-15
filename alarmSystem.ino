@@ -22,6 +22,11 @@ void setup() {
   powerOn();
 }
 
+namespace sensor::pin{
+  constexpr uint8_t speaker{11};
+  constexpr uint8_t vibration{A0};
+  constexpr uint8_t tilt{A1};
+}
 void loop() {
   tilt = analogRead(sensor::pin::tilt); 
   vibration = analogRead(sensor::pin::vibration); 

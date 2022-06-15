@@ -12,11 +12,6 @@ namespace alarm{
   void stop();
 }
 namespace sensor{
-  namespace pin{
-    constexpr uint8_t speaker{11};
-    constexpr uint8_t vibration{A0};
-    constexpr uint8_t tilt{A1};
-  }
   uint16_t prev_vibration{};
   uint16_t vibration{}; 
   uint16_t prev_tilt{};
