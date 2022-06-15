@@ -8,7 +8,7 @@ namespace powerPin{
   constexpr uint8_t high[] = {2,4};
   constexpr uint8_t ground[] = {3,5};
 }
-void sensor::powerOnAll(){
+void powerOn(){
   Serial.begin(115200);
   for(const auto& pin:  powerPin::high){
     pinMode(pin,OUTPUT);
@@ -21,7 +21,7 @@ void sensor::powerOnAll(){
 };
 
 void setup() { 
-  sensor::powerOnAll();
+  powerOn();
 }
 void loop() {
   tilt = analogRead(sensor::pin::tilt); 

@@ -18,7 +18,6 @@ namespace sensor{
   uint16_t prev_tilt{};
   uint16_t tilt{};
   void printValues(const uint16_t& , const uint16_t& );
-  void powerOnAll();
 } 
 namespace sound{
   bool playAlarm{};
