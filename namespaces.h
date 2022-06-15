@@ -21,6 +21,7 @@ namespace sensor{
   uint16_t vibration{}; 
   uint16_t prev_tilt{};
   uint16_t tilt{};
+  void update();
   void printValues(const uint16_t& , const uint16_t& );
 } 
 namespace sound{
@@ -47,6 +48,11 @@ void sensor::printValues(const uint16_t& tilt, const uint16_t& vibration){
     Serial.print("Vibration is ");
     Serial.println(vibration);
   }
+}
+void sensor::update(){
+  prev_vibration = vibration;
+  prev_tilt = tilt;
+  delay(2); 
 }
 void alarm::play(){
   startPlayback(alarm::recording, alarm::size);

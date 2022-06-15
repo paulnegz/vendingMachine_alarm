@@ -36,7 +36,5 @@ void loop() {
   if(sound::playAlarm && timerUp)
     alarm::stop();
 
-  prev_vibration = vibration;
-  prev_tilt = tilt;
-  delay(2); 
+  sensor::update();
 }
